@@ -230,15 +230,31 @@ public class LessonBookingSystem {
             System.out.print("Enter the lesson type or day for which you want to add a review: ");
             String lessonTypeOrDay = scanner.nextLine();
 
-            System.out.print("Enter your review comment: ");
-            String comment = scanner.nextLine();
+            int rating = 0;
+            boolean validRating = false;
+            while (!validRating) {
+                System.out.println("Enter your rating (1-5):");
+                System.out.println("1: Very dissatisfied");
+                System.out.println("2: Dissatisfied");
+                System.out.println("3: Ok");
+                System.out.println("4: Satisfied");
+                System.out.println("5: Very Satisfied");
+                String ratingInput = scanner.nextLine();
 
-            System.out.print("Enter your rating (1-5): ");
-            int rating = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+                try {
+                    rating = Integer.parseInt(ratingInput);
+                    if (rating >= 1 && rating <= 5) {
+                        validRating = true;
+                    } else {
+                        System.out.println("Invalid rating. Please enter a rating between 1 and 5.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid rating. Please enter a numeric value between 1 and 5.");
+                }
+            }
 
             // Create a new Review object and add it to the reviews list
-            Review review = new Review(customer, lessonTypeOrDay, comment, rating);
+            Review review = new Review(customer, lessonTypeOrDay, "", rating);
             reviews.add(review);
 
             System.out.println("Review added successfully.");
