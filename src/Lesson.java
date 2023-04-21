@@ -7,10 +7,11 @@ public class Lesson {
 
     private Customer customer;
 
-    public Lesson(String type, int weekNumber, String customerName, double price, int capacity) {
+    public Lesson(String type, int weekNumber, Customer customer,String customerName, double price, int capacity) {
         this.setType(type);
         this.setWeekNumber(weekNumber);
         this.setCustomerName(customerName);
+        this.setCustomer(customer);
         this.setPrice(price);
         this.setCapacity(capacity);
     }
@@ -61,6 +62,12 @@ public class Lesson {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+
+        return String.format("%s %s %s %s",weekNumber, type, price, customerName);
     }
 
     // Getters and Setters

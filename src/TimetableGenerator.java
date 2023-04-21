@@ -2,6 +2,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -16,7 +17,7 @@ public class TimetableGenerator {
     // Constructor
     public TimetableGenerator() {
         this.setTimetable(generateTimetable()); // Call the generateTimetable() method to generate the timetable
-
+        this.viewTimetable();
 
 
 
@@ -41,8 +42,10 @@ public class TimetableGenerator {
         boolean lessonFound = false; // added flag to track if lesson is found
 
         for (String[] row : getTimetable()) {
+
             if (row.length >= 5 && (row[4].toLowerCase().contains(lessonType.toLowerCase()) || row[5].toLowerCase().contains(lessonType.toLowerCase()))) {
-                System.out.format("%-5s%-10s%-12s%-8s%-25s%n", row[0], row[1], row[2], row[3], row[4]);
+                String lesson = row[5].toLowerCase().contains(lessonType.toLowerCase()) ? row[5] : row[4];
+                System.out.format("%-5s%-10s%-12s%-8s%-25s%n", row[0], row[1], row[2], row[3], lesson);
                 lessonFound = true; // set flag to true if lesson is found
             }
         }
@@ -144,6 +147,7 @@ public class TimetableGenerator {
         }
 
         this.setTimetable(timetableArray);
+
         return timetableArray;
     }
 
