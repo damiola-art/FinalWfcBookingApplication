@@ -92,10 +92,13 @@ public class LessonBookingSystem {
         }
 
         if (customer != null) {
+            // Prompt the user to enter the date
+            System.out.print("Enter the date (dd/mm/yyyy): ");
+            String date = scanner.nextLine();
+
             System.out.print("Enter the week number to book a lesson (1-8): ");
             int weekNumber = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
-
             // Check if week number is valid
             if (weekNumber < 1 || weekNumber > 8) {
                 System.out.println("Invalid lesson number. Please try again.");
@@ -147,19 +150,58 @@ public class LessonBookingSystem {
         timetableGenerator.viewTimetableByDay(dayOfWeek);
 
         if (customer != null) {
+            // Prompt the user to enter the date
+            System.out.print("Enter the date (dd/mm/yyyy): ");
+            String date = scanner.nextLine();
+
             System.out.print("Enter the week number to book a lesson (1-8): ");
             int weekNumber = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
             if (weekNumber < 1 || weekNumber > 8) {
                 System.out.println("Invalid lesson number. Please try again.");
             } else {
-                System.out.println("Lesson booked for week " + weekNumber + " by customer " + customer.getFirstname() + " " + customer.getLastName());
+                System.out.println("Select the lesson you want to book:");
+                System.out.println("1. Spin");
+                System.out.println("2. Yoga");
+                System.out.println("3. Bodysculpt");
+                System.out.println("4. Zumba");
+                System.out.print("Enter your choice: ");
+                int lessonChoice = scanner.nextInt();
+                scanner.nextLine(); // Consume the newline character
+
+                String lessonType;
+                if (lessonChoice == 1) {
+                    lessonType = "spin";
+                } else if (lessonChoice == 2) {
+                    lessonType = "yoga";
+                } else if (lessonChoice == 3) {
+                    lessonType = "Bodysculpt";
+                } else if (lessonChoice == 4) {
+                    lessonType = "zumba";
+                } else {
+                    System.out.println("Invalid lesson type. Please try again.");
+                    return; // Exit the method if the choice is invalid
+                }
+
+                // Check if lesson has available capacity
+                int bookedCount = 0;
+                for (Lesson lesson : bookedLessons) {
+                    if (lesson.getType().equalsIgnoreCase(lessonType) && lesson.getWeekNumber() == weekNumber) {
+                        bookedCount++;
+                    }
+                }
+                if (bookedCount >= 5) {
+                    System.out.println("Lesson " + lessonType + " for week " + weekNumber + " is fully booked. Please choose another week or lesson.");
+                } else {
+                    Lesson lesson = new Lesson(lessonType, weekNumber, customer, null,8.0, bookedCount + 1);
+                    bookedLessons.add(lesson);
+                    System.out.println( lessonType +"Lesson booked for week " + weekNumber + " " + date);
+                }
             }
         } else {
             System.out.println("No customer is set. Please set a customer before booking a lesson.");
         }
     }
-
 
     public void changeBooking(){
         Scanner scanner = new Scanner(System.in);
@@ -291,7 +333,7 @@ public class LessonBookingSystem {
 
     public void attendLesson(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the week number for the booking you want to cancel (1-8): ");
+        System.out.print("Enter the week number for the booking you want to book (1-8): ");
         int weekNumber = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
 
