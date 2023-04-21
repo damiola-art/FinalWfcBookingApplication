@@ -326,8 +326,8 @@ public class LessonBookingSystem {
                 System.out.println("2. Sign in");
             } else {
                 System.out.println("3. Sign out");
-                System.out.println("4. Book lesson by type");
-                System.out.println("5. Book lesson by day");
+                System.out.println("4. Book a group fitness lesson");
+                System.out.println("5. View booked lessons");
                 System.out.println("6. Change booking");
                 System.out.println("7. Cancel booking");
                 System.out.println("8. Attend Lesson");
@@ -359,16 +359,25 @@ public class LessonBookingSystem {
                     break;
                 case "4":
                     if (isSignedIn) {
-                        bookLessonByType();
-                        viewBookedLessons(); // added viewBookedLessons here
+                        System.out.println("1. Book by day");
+                        System.out.println("2. Book by type");
+                        System.out.print("Enter your choice: ");
+                        String bookingChoice = scanner.nextLine();
+                        if (bookingChoice.equals("1")) {
+                            bookLessonByDay();
+                        } else if (bookingChoice.equals("2")) {
+                            bookLessonByType();
+                        } else {
+                            System.out.println("Invalid choice. Please try again.");
+                        }
+                        viewBookedLessons();
                     } else {
                         System.out.println("You need to sign in first.");
                     }
                     break;
                 case "5":
                     if (isSignedIn) {
-                        bookLessonByDay();
-                        viewBookedLessons(); // added viewBookedLessons here
+                        viewBookedLessons();
                     } else {
                         System.out.println("You need to sign in first.");
                     }
@@ -376,7 +385,7 @@ public class LessonBookingSystem {
                 case "6":
                     if (isSignedIn) {
                         changeBooking();
-                        viewBookedLessons(); // added viewBookedLessons here
+                        viewBookedLessons();
                     } else {
                         System.out.println("You need to sign in first.");
                     }
@@ -384,7 +393,7 @@ public class LessonBookingSystem {
                 case "7":
                     if (isSignedIn) {
                         cancelBooking();
-                        viewBookedLessons(); // added viewBookedLessons here
+                        viewBookedLessons();
                     } else {
                         System.out.println("You need to sign in first.");
                     }
@@ -392,17 +401,20 @@ public class LessonBookingSystem {
                 case "8":
                     if (isSignedIn) {
                         attendLesson();
-                        viewBookedLessons(); // added viewBookedLessons here
+                        viewBookedLessons();
                     } else {
                         System.out.println("You need to sign in first.");
                     }
+                    break;
+                case "9":
+                    System.out.println("Exiting the system...");
+                    break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     break;
             }
         } while (!choice.equals("9"));
     }
-
 
 
 
