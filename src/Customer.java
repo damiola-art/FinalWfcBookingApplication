@@ -7,9 +7,9 @@ public class Customer {
 
 
     public Customer(String firstname, String lastName, String email){
-        this.firstname =firstname;
+        this.firstname = firstname;
         this.lastName = lastName;
-        this.email =email;
+        this.email = email;
     }
 
 
