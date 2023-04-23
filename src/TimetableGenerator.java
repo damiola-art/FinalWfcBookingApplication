@@ -17,13 +17,13 @@ public class TimetableGenerator {
     // Constructor
     public TimetableGenerator() {
         this.setTimetable(generateTimetable()); // Call the generateTimetable() method to generate the timetable
-       this.viewTimetable();
+      // this.viewTimetable();
 
 
 
     }
 
-    public void viewTimetable() {
+/*    public void viewTimetable() {
         System.out.println("Timetable for all lesson types:");
         System.out.format("%-5s%-10s%-12s%-8s%-25s%-25s%n", "Week", "Month", "Date", "Day", "Lesson 1", "Lesson 2");
 
@@ -31,7 +31,7 @@ public class TimetableGenerator {
             System.out.format("%-5s%-10s%-12s%-8s%-25s%-25s%n", row[0], row[1], row[2], row[3], row[4], row[5]);
         }
     }
-
+*/
     public void viewTimetableByLessonType(String lessonType) {
         System.out.println("Timetable for " + lessonType + ":");
         System.out.format("%-5s%-10s%-12s%-8s%-25s%n", "Week", "Month", "Date", "Day", "Lesson");
