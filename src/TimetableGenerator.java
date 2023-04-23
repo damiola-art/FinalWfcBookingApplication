@@ -17,14 +17,11 @@ public class TimetableGenerator {
     // Constructor
     public TimetableGenerator() {
         this.setTimetable(generateTimetable()); // Call the generateTimetable() method to generate the timetable
-        this.viewTimetable();
+       this.viewTimetable();
 
 
 
     }
-
-
-
 
     public void viewTimetable() {
         System.out.println("Timetable for all lesson types:");
@@ -78,7 +75,6 @@ public class TimetableGenerator {
   }
 
    */
-
 
 
 
