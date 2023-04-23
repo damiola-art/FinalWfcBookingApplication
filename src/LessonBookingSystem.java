@@ -369,16 +369,17 @@ public class LessonBookingSystem {
                     addReview(lesson);
                     lesson.setNoOfCustomers(lesson.getNoOfCustomers() + 1);
                     lesson.setTotalPrice(lesson.getTotalPrice() + lesson.getPrice());
-                    lessonsToRemove.add(lesson);
+//                    lessonsToRemove.add(lesson);
                     foundLesson = true;
                     break;
                 }
             }
             if (!foundLesson) {
                 System.out.println("No booking found for week " + weekNumber + ".");
-            } else {
-                bookedLessons.removeAll(lessonsToRemove);
             }
+//            else {
+//                bookedLessons.removeAll(lessonsToRemove);
+//            }
         }
     }
 
