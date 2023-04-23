@@ -442,7 +442,8 @@ public class LessonBookingSystem {
 
         for (Lesson lesson : bookedLessons) {
             if (lesson.getMonth() == month) {
-                System.out.println( "Lesson " + lesson.getType() + ", Number of customers is " + lesson.getNoOfCustomers() +", rating - (" +  lesson.getReview());
+                System.out.println( "Lesson " + lesson.getType() + ", Number of customers is " + lesson.getNoOfCustomers()
+                        +", rating - (" +  lesson.getReview());
             }
         }
     }
