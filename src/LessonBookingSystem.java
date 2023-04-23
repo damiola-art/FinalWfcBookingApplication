@@ -1,9 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 public class LessonBookingSystem {
     private TimetableGenerator timetableGenerator;
-    private List<Lesson> bookedLessons;
+    private ArrayList<Lesson> bookedLessons;
 
     private Customer customer;
     private ArrayList<Review> reviews;
@@ -44,6 +43,7 @@ public class LessonBookingSystem {
             signUp();
         }
     }
+
     public void signOut() {
         customer = null;
         System.out.println("Sign out successful. Thank you for using the Lesson Booking System!");
@@ -63,6 +63,7 @@ public class LessonBookingSystem {
         scanner.nextLine(); // Consume the newline character
 
         String lessonType;
+
         double price = 0.0;
         switch (lessonChoice) {
             case 1:
@@ -102,10 +103,6 @@ public class LessonBookingSystem {
         }
 
         if (customer != null) {
-            // Prompt the user to enter the date
-            System.out.print("Enter the date (dd/mm/yyyy): ");
-            String date = scanner.nextLine();
-
             System.out.print("Enter the week number to book a lesson (1-8): ");
             int weekNumber = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
@@ -113,17 +110,10 @@ public class LessonBookingSystem {
             if (weekNumber < 1 || weekNumber > 8) {
                 System.out.println("Invalid lesson number. Please try again.");
             } else {
-                // Check if lesson has available capacity
-                int bookedCount = 0;
-                for (Lesson lesson : bookedLessons) {
-                    if (lesson.getType().equalsIgnoreCase(lessonType) && lesson.getWeekNumber() == weekNumber) {
-                        bookedCount++;
-                    }
-                }
-                if (bookedCount >= 5) {
+                if (bookedLessons.size() >= 5) {
                     System.out.println("Lesson " + lessonType + " for week " + weekNumber + " is fully booked. Please choose another week or lesson.");
                 } else {
-                    Lesson lesson = new Lesson(lessonType, weekNumber, customer, null, price, bookedCount + 1);
+                    Lesson lesson = new Lesson(lessonType, weekNumber, customer, null, price, 4);
                     bookedLessons.add(lesson);
                     System.out.println("Lesson booked for week " + weekNumber);
                 }
@@ -139,81 +129,91 @@ public class LessonBookingSystem {
         System.out.println("1. Saturday");
         System.out.println("2. Sunday");
         System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
+        int dayChoice = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
-
         String dayOfWeek;
-        if (choice == 1) {
-            dayOfWeek = "sat";
-        } else if (choice == 2) {
-            dayOfWeek = "sun";
-        } else {
-            System.out.println("Invalid choice. Please try again.");
-            return; // Exit the method if the choice is invalid
+
+        switch (dayChoice) {
+            case 1:
+                dayOfWeek = "Sat";
+                break;
+            case 2:
+                dayOfWeek = "Sun";
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                return;
         }
+
+        timetableGenerator.viewTimetableByDay(dayOfWeek);
 
         if (customer == null) {
             System.out.println("Please sign in first before booking a lesson by type.");
             signIn();
         }
 
-        timetableGenerator.viewTimetableByDay(dayOfWeek);
+        System.out.print("Enter the week number to book a lesson (1-8): ");
+        int weekNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+        if (weekNumber < 1 || weekNumber > 8) {
+            System.out.println("Invalid week number. Please try again.");
+            return;
+        }
 
-        if (customer != null) {
-            // Prompt the user to enter the date
-            System.out.print("Enter the date (dd/mm/yyyy): ");
-            String date = scanner.nextLine();
+        System.out.println("Select the lesson you want to book:");
+        System.out.println("1. Spin");
+        System.out.println("2. Yoga");
+        System.out.println("3. Bodysculpt");
+        System.out.println("4. Zumba");
+        System.out.println("5. Aquacise");
+        System.out.println("6. Box Fit");
+        System.out.print("Enter your choice: ");
+        int lessonChoice = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+        String lessonType;
+        double price;
 
-            System.out.print("Enter the week number to book a lesson (1-8): ");
-            int weekNumber = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
-            if (weekNumber < 1 || weekNumber > 8) {
-                System.out.println("Invalid lesson number. Please try again.");
-            } else {
-                System.out.println("Select the lesson you want to book:");
-                System.out.println("1. Spin");
-                System.out.println("2. Yoga");
-                System.out.println("3. Bodysculpt");
-                System.out.println("4. Zumba");
-                System.out.print("Enter your choice: ");
-                int lessonChoice = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
+        switch (lessonChoice) {
+            case 1:
+                lessonType = "Spin";
+                price = 10.0;
+                break;
+            case 2:
+                lessonType = "Yoga";
+                price = 15.0;
+                break;
+            case 3:
+                lessonType = "Bodysculpt";
+                price = 12.0;
+                break;
+            case 4:
+                lessonType = "Zumba";
+                price = 8.0;
+                break;
+            case 5:
+                lessonType = "Aquacise";
+                price = 12.0;
+                break;
+            case 6:
+                lessonType = "Box Fit";
+                price = 10.0;
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                return;
+        }
 
-                String lessonType;
-                if (lessonChoice == 1) {
-                    lessonType = "spin";
-                } else if (lessonChoice == 2) {
-                    lessonType = "yoga";
-                } else if (lessonChoice == 3) {
-                    lessonType = "Bodysculpt";
-                } else if (lessonChoice == 4) {
-                    lessonType = "zumba";
-                } else {
-                    System.out.println("Invalid lesson type. Please try again.");
-                    return; // Exit the method if the choice is invalid
-                }
-
-                // Check if lesson has available capacity
-                int bookedCount = 0;
-                for (Lesson lesson : bookedLessons) {
-                    if (lesson.getType().equalsIgnoreCase(lessonType) && lesson.getWeekNumber() == weekNumber) {
-                        bookedCount++;
-                    }
-                }
-                if (bookedCount >= 5) {
-                    System.out.println("Lesson " + lessonType + " for week " + weekNumber + " is fully booked. Please choose another week or lesson.");
-                } else {
-                    Lesson lesson = new Lesson(lessonType, weekNumber, customer, null,8.0, bookedCount + 1);
-                    bookedLessons.add(lesson);
-                    System.out.println( lessonType +"Lesson booked for week " + weekNumber + " " + date);
-                }
-            }
+        // Check if lesson has available capacity
+        if (bookedLessons.size() >= 5) {
+            System.out.println("Lesson " + lessonType + " for week " + weekNumber + " is fully booked. Please choose another week or lesson.");
         } else {
-            System.out.println("No customer is set. Please set a customer before booking a lesson.");
+            Lesson lesson = new Lesson(lessonType, weekNumber, customer, null, price, 4);
+            bookedLessons.add(lesson);
+            System.out.println(lessonType + " lesson booked for week " + weekNumber );
         }
     }
 
-    public void changeBooking(){
+    public void changeBooking() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the week number for the booking you want to change (1-8): ");
         int weekNumber = scanner.nextInt();
@@ -223,22 +223,23 @@ public class LessonBookingSystem {
             System.out.println("Please sign in first before changing a booking.");
             signIn();
         } else {
-            for(Lesson lesson1 : bookedLessons){
+            for (Lesson lesson1 : bookedLessons) {
                 if (lesson1.getCustomer().getEmail().equals(customer.getEmail())) {
                     System.out.println("Are you sure you want to change your booking for week " + weekNumber + "? (yes/no): ");
                     String choice = scanner.nextLine().toLowerCase();
                     if (choice.equals("yes")) {
-                        bookedLessons.remove(customer.getEmail() + "-" + weekNumber);
+                        bookedLessons.remove(lesson1);
+                        System.out.print("lesson has been removed ");
 
-                        System.out.println("Do you want to book a lesson by day or name");
+                        System.out.println("Book lesson by lessontype or day");
 
                         String option = scanner.nextLine().toLowerCase();
 
-                        switch (option){
+                        switch (option) {
                             case "day":
                                 bookLessonByDay();
                                 break;
-                            case "name":
+                            case "lessontype":
                                 bookLessonByType();
                                 break;
                             default:
@@ -265,24 +266,30 @@ public class LessonBookingSystem {
             System.out.println("Please sign in first before canceling a booking.");
             signIn();
         } else {
-            for(Lesson lesson1 : bookedLessons){
-                if (lesson1.getCustomer().getEmail().equals(customer.getEmail())) {
+            boolean bookingFound = false;
+            for (Lesson lesson : bookedLessons) {
+                if (lesson.getWeekNumber() == weekNumber && lesson.getCustomer().getEmail().equals(customer.getEmail())) {
+                    bookingFound = true;
                     System.out.println("Are you sure you want to cancel your booking for week " + weekNumber + "? (yes/no): ");
                     String choice = scanner.nextLine().toLowerCase();
                     if (choice.equals("yes")) {
-                        bookedLessons.remove(customer.getEmail() + "-" + weekNumber);
+                        bookedLessons.remove(lesson);
                         System.out.println("Booking canceled for week " + weekNumber + " by customer " + customer.getFirstname() + " " + customer.getLastName());
+                        break;
                     } else {
                         System.out.println("Booking not canceled.");
+                        break;
                     }
-                } else {
-                    System.out.println("No booking found for week " + weekNumber + ".");
                 }
+            }
+            if (!bookingFound) {
+                System.out.println("No booking found for week " + weekNumber + ".");
             }
         }
     }
 
-    public void addReview() {
+
+    public void addReview(Lesson lesson) {
         Scanner scanner = new Scanner(System.in);
         if (customer == null) {
             System.out.println("Please sign in first before adding a review.");
@@ -319,9 +326,12 @@ public class LessonBookingSystem {
 
             reviews.add(review);
 
-            System.out.println("Review added successfully.");
+            System.out.println(" Thanks for the review.");
+
+
         }
     }
+
     public void viewBookedLessons() {
         if (customer == null) {
             System.out.println("Please sign in first to view your booked lessons.");
@@ -333,7 +343,7 @@ public class LessonBookingSystem {
         } else {
             System.out.println("List of booked lessons:");
             for (Lesson lesson : bookedLessons) {
-                if (lesson.getCustomer().equals(customer)) {
+                if (lesson != null && lesson.getCustomer().getEmail().equals(customer.getEmail())) {
                     System.out.println("- Week " + lesson.getWeekNumber() + ": " + lesson.getType() + " booked by " + customer.getFirstname() + " " + customer.getLastName() + "" + " for $" + lesson.getPrice());
                 }
             }
@@ -341,47 +351,123 @@ public class LessonBookingSystem {
     }
 
 
-    public void attendLesson(){
-
+    public void attendLesson() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the week number for the booking you want to attend (1-8): ");
         int weekNumber = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
 
         if (customer == null) {
-            System.out.println("Please sign in first before canceling a booking.");
+            System.out.println("Please sign in first before attending a lesson.");
             signIn();
         } else {
-            for(Lesson lesson1 : bookedLessons){
-                if (lesson1.getCustomer().getEmail().equals(customer.getEmail())) {
-
-                    System.out.println("Lesson as ben attened");
-
-                    addReview();
-
-                    bookedLessons.remove(customer.getEmail() + "-" + weekNumber);
-                } else {
-                    System.out.println("No booking found for week " + weekNumber + ".");
+            List<Lesson> lessonsToRemove = new ArrayList<>();
+            boolean foundLesson = false;
+            for (Lesson lesson : bookedLessons) {
+                if (lesson.getWeekNumber() == weekNumber && lesson.getCustomer().getEmail().equals(customer.getEmail())) {
+                    System.out.println("Lesson has been attended.");
+                    addReview(lesson);
+                    lesson.setNoOfCustomers(lesson.getNoOfCustomers() + 1);
+                    lesson.setTotalPrice(lesson.getTotalPrice() + lesson.getPrice());
+                    lessonsToRemove.add(lesson);
+                    foundLesson = true;
+                    break;
                 }
+            }
+            if (!foundLesson) {
+                System.out.println("No booking found for week " + weekNumber + ".");
+            } else {
+                bookedLessons.removeAll(lessonsToRemove);
             }
         }
     }
 
-    public void monthlyLessonReport(){
 
+    public String getMonthName(int num){
+        String name = "";
+
+        switch (num){
+            case 1:
+                name = "January";
+                break;
+            case 2:
+                name = "Febuary";
+                break;
+            case 3:
+                name = "March";
+                break;
+            case 4:
+                name = "April";
+                break;
+            case 5:
+                name = "May";
+                break;
+            case 6:
+                name = "June";
+                break;
+            case 7:
+                name = "July";
+                break;
+            case 8:
+                name = "August";
+                break;
+            case 9:
+                name = "September";
+                break;
+            case 10:
+                name = "October";
+                break;
+            case 11:
+                name = "November";
+                break;
+            case 12:
+                name = "December";
+                break;
+            default:
+                name = "Unknown";
+                break;
+        }
+
+        return name;
+    }
+
+    public void monthlyLessonReport(int month) {
+        if (bookedLessons.isEmpty()) {
+            System.out.println("There are no lessons booked.");
+            return;
+        }
+
+        System.out.println("Monthly Lesson Report for " + getMonthName(month));
+
+        for (Lesson lesson : bookedLessons) {
+            if (lesson.getMonth() == month) {
+                System.out.println( "Lesson " + lesson.getType() + ", Number of customers is " + lesson.getNoOfCustomers() +", rating - (" +  lesson.getReview());
+            }
+        }
+    }
+
+
+
+
+    public void monthlyChampionFitnessTypeReport(int month){
+        if (bookedLessons.isEmpty()) {
+            System.out.println("There are no lessons booked.");
+            return;
+        }
+
+        System.out.println("Monthly Lesson Report for " + getMonthName(month));
+
+        for (Lesson lesson : bookedLessons) {
+            if (lesson.getMonth() == month) {
+                System.out.println("Lesson " + lesson.getType() + ", Number of customers is $" + lesson.getTotalPrice());
+            }
+        }
     };
-
-    public void monthlyChampionFitnessTypeReport(){
-
-
-    };
-
-
 
     // Method to view booked lessons
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        String choice;
+        String choice = "";
         boolean isSignedUp = false;
         boolean isSignedIn = false;
 
@@ -401,102 +487,102 @@ public class LessonBookingSystem {
             }
             System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
-            choice = scanner.nextLine();
 
-            switch (choice) {
-                case "1":
-                    signUp();
-                    isSignedUp = true;
-                    break;
-                case "2":
-                    if (isSignedUp) {
-                        signIn();
-                        isSignedIn = true;
-                    } else {
-                        System.out.println("You need to sign up first.");
-                    }
-                    break;
-                case "3":
-                    if (isSignedIn) {
-                        signOut();
-                        isSignedIn = false;
-                    } else {
-                        System.out.println("You need to sign in first.");
-                    }
-                    break;
-                case "4":
-                    if (isSignedIn) {
-                        System.out.println("1. Book by day");
-                        System.out.println("2. Book by type");
-                        System.out.print("Enter your choice: ");
-                        String bookingChoice = scanner.nextLine();
-                        if (bookingChoice.equals("1")) {
-                            bookLessonByDay();
-                        } else if (bookingChoice.equals("2")) {
-                            bookLessonByType();
+                choice = scanner.nextLine();
+
+                switch (choice) {
+                    case "1":
+                        signUp();
+                        isSignedUp = true;
+                        break;
+                    case "2":
+                        if (isSignedUp) {
+                            signIn();
+                            isSignedIn = true;
                         } else {
-                            System.out.println("Invalid choice. Please try again.");
+                            System.out.println("You need to sign up first.");
                         }
-                        viewBookedLessons();
-                    } else {
-                        System.out.println("You need to sign in first.");
-                    }
-                    break;
-                case "5":
-                    if (isSignedIn) {
-                        viewBookedLessons();
-                        System.out.println("1. Attend Lesson");
-                        System.out.println("2. Change Booking");
-                        System.out.println("3. Cancel Booking");
-                        System.out.print("Enter your choice: ");
-                        String bookingChoice = scanner.nextLine();
-                        if (bookingChoice.equals("1")) {
-                            attendLesson();
-                        } else if (bookingChoice.equals("2")) {
+                        break;
+                    case "3":
+                        if (isSignedIn) {
+                            signOut();
+                            isSignedIn = false;
+                        } else {
+                            System.out.println("You need to sign in first.");
+                        }
+                        break;
+                    case "4":
+                        if (isSignedIn) {
+                            System.out.println("1. Book by day");
+                            System.out.println("2. Book by type");
+                            System.out.print("Enter your choice: ");
+                            String bookingChoice = scanner.nextLine();
+                            if (bookingChoice.equals("1")) {
+                                bookLessonByDay();
+                            } else if (bookingChoice.equals("2")) {
+                                bookLessonByType();
+                            } else {
+                                System.out.println("Invalid choice. Please try again.");
+                            }
+                            viewBookedLessons();
+                        } else {
+                            System.out.println("You need to sign in first.");
+                        }
+                        break;
+                    case "5":
+                        if (isSignedIn) {
+                            viewBookedLessons();
+                            System.out.println("1. Attend Lesson");
+                            System.out.println("2. Change Booking");
+                            System.out.println("3. Cancel Booking");
+                            System.out.print("Enter your choice: ");
+                            String bookingChoice = scanner.nextLine();
+                            if (bookingChoice.equals("1")) {
+                                attendLesson();
+                            } else if (bookingChoice.equals("2")) {
+                                changeBooking();
+                            } else if (bookingChoice.equals("3")) {
+                                cancelBooking();
+                            } else {
+                                System.out.println("Invalid choice. Please try again.");
+                            }
+                            viewBookedLessons();
+                        } else {
+                            System.out.println("You need to sign in first.");
+                        }
+                        break;
+                    case "6":
+                        if (isSignedIn) {
                             changeBooking();
-                        } else if (bookingChoice.equals("3")) {
-                            cancelBooking();
+                            viewBookedLessons();
                         } else {
-                            System.out.println("Invalid choice. Please try again.");
+                            System.out.println("You need to sign in first.");
                         }
-                        viewBookedLessons();
-                    } else {
-                        System.out.println("You need to sign in first.");
-                    }
-                    break;
-                case "6":
-                    if (isSignedIn) {
-                        changeBooking();
-                        viewBookedLessons();
-                    } else {
-                        System.out.println("You need to sign in first.");
-                    }
-                    break;
-                case "7":
-                    if (isSignedIn) {
-                        monthlyLessonReport();
-                    } else {
-                        System.out.println("You need to sign in first.");
-                    }
-                    break;
-                case "8":
-                    if (isSignedIn) {
-                        monthlyChampionFitnessTypeReport();
-                    } else {
-                        System.out.println("You need to sign in first.");
-                    }
-                    break;
-                case "9":
-                    System.out.println("Exiting the system...");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+                        break;
+                    case "7":
+                        if (isSignedIn) {
+                            monthlyLessonReport(4);
+                        } else {
+                            System.out.println("You need to sign in first.");
+                        }
+                        break;
+                    case "8":
+                        if (isSignedIn) {
+                            monthlyChampionFitnessTypeReport(4);
+                        } else {
+                            System.out.println("You need to sign in first.");
+                        }
+                        break;
+                    case "9":
+                        System.out.println("Exiting the system...");
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
 
-            }
+                }
+
         } while (!choice.equals("9"));
     }
-
-
 
     public static void main(String[] args) {
         LessonBookingSystem bookingSystem = new LessonBookingSystem();
