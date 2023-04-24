@@ -10,7 +10,6 @@ public class AppUi {
     Scanner scanner = new Scanner(System.in);
 
 
-
     public AppUi() {
         this.lessonBookingSystem = new LessonBookingSystem();
         this.timetable = new Timetable();
@@ -26,7 +25,7 @@ public class AppUi {
         System.out.print("Enter your email address: ");
         String email = scanner.nextLine();
 
-        Customer currentCustomer = lessonBookingSystem.signUp(firstname,lastname,email);
+        Customer currentCustomer = lessonBookingSystem.signUp(firstname, lastname, email);
         signedInCustomer = currentCustomer;
         System.out.println("Sign up successful! Welcome, " + firstname + " " + lastname + ".");
 
@@ -50,20 +49,21 @@ public class AppUi {
     public void signOut() {
         this.signedInCustomer = null;
         System.out.println("Sign out successful. Thank you for using the Lesson Booking System!");
+        run();
     }
 
-    public Lesson selectLessons(ArrayList<Lesson> lessons){
+    public Lesson selectLessons(ArrayList<Lesson> lessons) {
         System.out.println("Choose a Lesson");
-        for(int i = 0; i < lessons.size(); i++ ){
-            System.out.println("Enter " + (int)(i + 1) + " for " + lessons.get(i).toString());
+        for (int i = 0; i < lessons.size(); i++) {
+            System.out.println("Enter " + (int) (i + 1) + " for " + lessons.get(i).toString());
         }
 
         int choice = scanner.nextInt();
         Lesson lesson = lessons.get(choice - 1);
-        if(signedInCustomer.getBookedLessons().contains(lesson)){
+        if (signedInCustomer.getBookedLessons().contains(lesson)) {
             System.out.println("You already have this lesson, please pick another lesson");
             return selectLessons(lessons);
-        } else if(lesson.isFilled()){
+        } else if (lesson.isFilled()) {
             System.out.println("This Lesson is filled, please pick another lesson");
             return selectLessons(lessons);
         } else {
@@ -72,7 +72,7 @@ public class AppUi {
 
     }
 
-    public void displayBookings(){
+    public void displayBookings() {
         for (Map.Entry<String, Booking> entry : signedInCustomer.getBookings().entrySet()) {
             System.out.println("Booking ID: " + entry.getKey() + ", Lesson: " + entry.getValue().getLesson().toString());
         }
@@ -145,44 +145,43 @@ public class AppUi {
         return selectLessons(lessons);
 
 
-
     }
 
-    public Lesson chooseLesson(){
+    public Lesson chooseLesson() {
         System.out.println("Select how you want to view the timetable, Enter 1 for By Day or 2 for By Fitness Activity");
         int choice = scanner.nextInt();
         Lesson lesson = null;
-        if(choice == 1){
+        if (choice == 1) {
             lesson = bookLessonByDay();
-        } else if(choice == 2){
+        } else if (choice == 2) {
             lesson = bookLessonByType();
-        } else{
+        } else {
             System.out.println("Please enter a valid option");
             return chooseLesson();
         }
         return lesson;
     }
 
-    public void bookLesson(){
+    public void bookLesson() {
         Lesson lesson = chooseLesson();
         String bookingID = lessonBookingSystem.registerNewBooking(signedInCustomer, lesson);
         System.out.println("Booking successful. Your booking ID is " + bookingID + "\n");
     }
 
     public void changeBooking() {
-         // Consume the newline character
+        // Consume the newline character
         displayBookings();
         boolean continueLoop = true;
         Lesson newlesson = null;
         Booking booking = null;
-        while(continueLoop){
+        while (continueLoop) {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter the booking ID of the booking you want to change NB: ID is Case sensitive");
 
             String bookingID = scanner.next();
             scanner.nextLine();
 
-            if(signedInCustomer.getBookings().containsKey(bookingID)){
+            if (signedInCustomer.getBookings().containsKey(bookingID)) {
                 System.out.println("Pick the lesson you want to change the booking to");
 
                 newlesson = chooseLesson();
@@ -200,14 +199,14 @@ public class AppUi {
         displayBookings();
         boolean continueLoop = true;
         Booking booking = null;
-        while(continueLoop){
+        while (continueLoop) {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter the booking ID of the booking you want to cancel NB: ID is Case sensitive");
 
             String bookingID = scanner.next();
             scanner.nextLine();
 
-            if(signedInCustomer.getBookings().containsKey(bookingID)){
+            if (signedInCustomer.getBookings().containsKey(bookingID)) {
                 booking = signedInCustomer.getBookings().get(bookingID);
                 continueLoop = false;
             } else {
@@ -224,14 +223,14 @@ public class AppUi {
         displayBookings();
         boolean continueLoop = true;
         Booking booking = null;
-        while(continueLoop){
+        while (continueLoop) {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter the booking ID of the booking you want to attend NB: ID is Case sensitive");
 
             String bookingID = scanner.next();
             scanner.nextLine();
 
-            if(signedInCustomer.getBookings().containsKey(bookingID)){
+            if (signedInCustomer.getBookings().containsKey(bookingID)) {
                 booking = signedInCustomer.getBookings().get(bookingID);
                 continueLoop = false;
             } else {
@@ -243,15 +242,15 @@ public class AppUi {
         boolean loop = true;
         Review review = null;
 
-        while(loop){
+        while (loop) {
             System.out.println("Enter 1 to drop both feedback and rating and 2 to drop just rating");
             int choice = scanner.nextInt();
 
-            if(choice == 1){
+            if (choice == 1) {
 
                 int rating = 0;
 
-                while (rating > 5 || rating < 1){
+                while (rating > 5 || rating < 1) {
                     System.out.println("Enter your rating (1-5):");
                     System.out.println("1: Very dissatisfied");
                     System.out.println("2: Dissatisfied");
@@ -265,10 +264,10 @@ public class AppUi {
 
                 review = new Review(feedback, rating);
                 loop = false;
-            } else if(choice == 2){
+            } else if (choice == 2) {
                 int rating = 0;
 
-                while (rating > 5 || rating < 1){
+                while (rating > 5 || rating < 1) {
                     System.out.println("Enter your rating (1-5):");
                     System.out.println("1: Very dissatisfied");
                     System.out.println("2: Dissatisfied");
@@ -296,53 +295,73 @@ public class AppUi {
     }
 
 
-
-
-    public void monthlyChampionFitnessTypeReport(){
+    public void monthlyChampionFitnessTypeReport() {
         System.out.print("Enter the Month");
         int month = scanner.nextInt();
         System.out.println("Here is the Champions report for Month " + month + "\n\n");
         System.out.println(timetable.getChampionsReport(month));
     }
 
-    public void exit(){
+    public void exit() {
         System.exit(0);
     }
 
     // Method to view booked lessons
     public void run() {
         Scanner scanner = new Scanner(System.in);
+        boolean signedIn = false;
 
-        while(true){
-            System.out.println("1. Sign up");
-            System.out.println("2. Sign in");
-            int choice = scanner.nextInt();
-            if (choice == 1){
-                signUp();
-                break;
-            } else if(choice == 2){
-                signIn();
-                break;
+        while (!signedIn) {
+            System.out.println("------------------------------------------");
+            System.out.println("|               Main Menu                |");
+            System.out.println("------------------------------------------");
+            System.out.println("| 1. Sign up                             |");
+            System.out.println("| 2. Sign In                                |");
+            System.out.println("------------------------------------------");
+            try{
+                int choice = scanner.nextInt();
+                if (choice == 1) {
+                    signUp();
+                    signedIn = true;
+                } else if (choice == 2) {
+                    exit();
+                } else {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (Exception e){
+                System.out.println("Invalid choice. Please try again.");
+                scanner.next();
             }
+
+
         }
 
-        while (true){
-            System.out.println("1. Book a group fitness lesson");
-            System.out.println("2. Modify Booking");
-            System.out.println("3. Monthly Lesson Report");
-            System.out.println("4. Monthly Champion Fitness Type Report");
-            System.out.println("5 Sign out");
-            System.out.println("0 Exit");
+        while (signedIn) {
+            System.out.println("------------------------------------------");
+            System.out.println("|             Customer Menu              |");
+            System.out.println("------------------------------------------");
+            System.out.println("| 1. Book a group fitness lesson         |");
+            System.out.println("| 2. Modify Booking                      |");
+            System.out.println("| 3. Monthly Lesson Report               |");
+            System.out.println("| 4. Monthly Champion Fitness Type Report|");
+            System.out.println("| 5. Sign out                            |");
+            System.out.println("| 0. Exit                                |");
+            System.out.println("------------------------------------------");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     bookLesson();
                     break;
                 case 2:
-                    while (true){
-                        System.out.println("1. Attend Lesson");
-                        System.out.println("2. Change Booking");
-                        System.out.println("3. Cancel Booking");
+                    while (true) {
+                        System.out.println("------------------------------------------");
+                        System.out.println("|            Modify Booking Menu         |");
+                        System.out.println("------------------------------------------");
+                        System.out.println("| 1. Attend Lesson                       |");
+                        System.out.println("| 2. Change Booking                      |");
+                        System.out.println("| 3. Cancel Booking                      |");
+                        System.out.println("| 4. Back                                |");
+                        System.out.println("------------------------------------------");
                         System.out.print("Enter your choice: ");
                         int bookingChoice = scanner.nextInt();
                         if (bookingChoice == 1) {
@@ -354,19 +373,22 @@ public class AppUi {
                         } else if (bookingChoice == 3) {
                             cancelBooking();
                             break;
+                        } else if (bookingChoice == 4) {
+                            break;
                         } else {
                             System.out.println("Invalid choice. Please try again.");
                         }
-                    } break;
+                    }
+                    break;
                 case 3:
                     displayMonthlyLessonReport();
                     break;
                 case 4:
                     monthlyChampionFitnessTypeReport();
                     break;
-
                 case 5:
                     signOut();
+                    signedIn = false;
                     break;
                 case 0:
                     exit();
@@ -374,9 +396,6 @@ public class AppUi {
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-
-
         }
     }
-
 }

@@ -96,14 +96,14 @@ public class Lesson {
     }
 
     public double getAverageRating(){
-        double sum = 0;
-        for(Review review : reviews){
+        int sum = 0;
+        for(Review review : this.getReviews()){
             sum += review.getRating();
         }
-        if (sum == 0){
+        if (reviews.size() == 0){
             return 0;
         } else{
-            return sum/reviews.size();
+            return (double)sum/reviews.size();
         }
 
     }
@@ -124,6 +124,10 @@ public class Lesson {
     public void decreaseNumberOfBooking(){
         this.numberOfBookings -= 1;
         updateIsFilled();
+    }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
     }
 
     public void increaseNumberOfAttendance(){
