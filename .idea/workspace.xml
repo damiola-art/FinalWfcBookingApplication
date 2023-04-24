@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be48338-8294-4012-a359-474774a2e41d" name="Changes" comment="updated LessonBookingSystem" />
+    <list default="true" id="4be48338-8294-4012-a359-474774a2e41d" name="Changes" comment="updated the function on monthlychampionsreport">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppUi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LessonType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalWfcBookingApplication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalWfcBookingApplication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LessonBookingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LessonBookingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TimetableGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timetable.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,11 +28,25 @@
       <list>
         <option value="package-info" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="3b530092-7ea1-41f0-b41d-cf3d08baca01" />
+        <option name="url" value="https://github.com/damiola-art/FinalWfcBookingApplication.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -32,11 +59,73 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/DAMI/Desktop/java udemy/FinalWfcBookingApplication"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "create.test.in.the.same.root": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "C:/Users/DAMI/Desktop/NEW JAVA/Project",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="LessonBookingSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LessonBookingSystem" />
+      <module name="FinalWfcBookingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="FinalWfcBookingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LessonBookingSystemTest.bookLessonByType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FinalWfcBookingApplication" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LessonBookingSystemTest" />
+      <option name="METHOD_NAME" value="bookLessonByType" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LessonBookingSystemTest.testSignUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FinalWfcBookingApplication" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LessonBookingSystemTest" />
+      <option name="METHOD_NAME" value="testSignUp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.LessonBookingSystemTest.testSignUp" />
+        <item itemvalue="JUnit.LessonBookingSystemTest.bookLessonByType" />
+        <item itemvalue="Application.LessonBookingSystem" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -109,7 +198,84 @@
       <option name="project" value="LOCAL" />
       <updated>1682035279425</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="updated LessonBookingSystem">
+      <created>1682035372923</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682035372923</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added an option to view booked lessons in the menu.&#10;Separated the booking by day and booking by type options into two separate cases in the switch statement.">
+      <created>1682038244636</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682038244637</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add date format">
+      <created>1682080095218</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682080095218</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Created a monthlyLessonReport method">
+      <created>1682115542984</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682115542984</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updated the timetable method viewbyday">
+      <created>1682215974828</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682215974828</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added comment on the viewtimetable method">
+      <created>1682226623010</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682226623010</updated>
+    </task>
+    <task id="LOCAL-00016" summary="validate customer properties">
+      <created>1682227919571</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682227919571</updated>
+    </task>
+    <task id="LOCAL-00017" summary="created new instance">
+      <created>1682227968621</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682227968621</updated>
+    </task>
+    <task id="LOCAL-00018" summary="worked on the functionality of cancel booking and change booking">
+      <created>1682228030138</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682228030138</updated>
+    </task>
+    <task id="LOCAL-00019" summary=" ensure the lesson remains in the bookedLessons list even after the customer has attended the lesson and entered a review.">
+      <created>1682257737143</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1682257737143</updated>
+    </task>
+    <task id="LOCAL-00020" summary="updated the function on monthlychampionsreport">
+      <created>1682260166606</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1682260166606</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -120,6 +286,19 @@
     <MESSAGE value="created TimetableGenerator and lessonBookingsystem class" />
     <MESSAGE value="Created Review class" />
     <MESSAGE value="updated LessonBookingSystem" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated LessonBookingSystem" />
+    <MESSAGE value="Added an option to view booked lessons in the menu.&#10;Separated the booking by day and booking by type options into two separate cases in the switch statement." />
+    <MESSAGE value="add date format" />
+    <MESSAGE value="Created a monthlyLessonReport method" />
+    <MESSAGE value="updated the timetable method viewbyday" />
+    <MESSAGE value="added comment on the viewtimetable method" />
+    <MESSAGE value="validate customer properties" />
+    <MESSAGE value="created new instance" />
+    <MESSAGE value="worked on the functionality of cancel booking and change booking" />
+    <MESSAGE value=" ensure the lesson remains in the bookedLessons list even after the customer has attended the lesson and entered a review." />
+    <MESSAGE value="updated the function on monthlychampionsreport" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the function on monthlychampionsreport" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FinalWfcBookingApplication$LessonBookingSystem.ic" NAME="LessonBookingSystem Coverage Results" MODIFIED="1682199745725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
