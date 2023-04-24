@@ -1,77 +1,37 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Lesson {
-    private String type;
+    private LessonType type;
     private int weekNumber;
-    private String customerName;
-    private double price;
-    private int month; // new instance variable
+    private int month;
+    private String day; // saturday or sunday
+    private int period; // 1 or 2
 
-    private int noOfCustomers = 0;
-    private double totalPrice = 0;
-    private Customer customer;
-    private LocalDate startDate;
 
-    private Review review;
+    private int numberOfBookings;
+    private int numberOfAttendance;
+    private final int CAPACITY = 5;
+    private boolean isFilled;
+    private ArrayList<Review> reviews;
 
-    public Lesson(String type, int weekNumber, Customer customer, String customerName, double price, int month) {
-        this.setType(type);
-        this.setWeekNumber(weekNumber);
-        this.setCustomer(customer);
-        this.setCustomerName(customerName);
-        this.setPrice(price);
-        this.setMonth(month);
-
-        this.startDate = startDate;
-    }
-
-    public int getNoOfCustomers() {
-        return noOfCustomers;
-    }
-
-    public void setNoOfCustomers(int noOfCustomers) {
-        this.noOfCustomers += noOfCustomers;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice += totalPrice;
-    }
-
-    public LocalDate getStartDate() { // new method to get start date
-        return this.startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) { // new method to set start date
-        this.startDate = startDate;
-    }
-    // getters and setters for the new variables
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
+    public Lesson(LessonType type, int month, int weekNumber, String day, int period) {
+        this.type = type;
+        this.weekNumber = weekNumber;
         this.month = month;
+        this.day = day;
+        this.period = period;
+        this.numberOfAttendance = 0;
+        this.numberOfBookings = 0;
+        this.reviews = new ArrayList<Review>();
+        this.isFilled = false;
     }
 
-
-
-
-    // other existing getters and setters omitted for brevity...
-
-    @Override
-    public String toString() {
-        return String.format("%s %s %s %s", getWeekNumber(), getType(), getPrice(), getCustomerName());
-    }
-
-    public String getType() {
+    public LessonType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(LessonType type) {
         this.type = type;
     }
 
@@ -83,35 +43,94 @@ public class Lesson {
         this.weekNumber = weekNumber;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public int getMonth() {
+        return month;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    public double getPrice() {
-        return price;
+    public String getDay() {
+        return day;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getPeriod() {
+        return period;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setPeriod(int period) {
+        this.period = period;
     }
 
-    public Review getReview() {
-        return review;
+    public int getNumberOfBookings() {
+        return numberOfBookings;
     }
 
-    public void setReview(Review review) {
-        this.review = review;
+    public void setNumberOfBookings(int numberOfBookings) {
+        this.numberOfBookings = numberOfBookings;
+    }
+
+    public int getNumberOfAttendance() {
+        return numberOfAttendance;
+    }
+
+    public void setNumberOfAttendance(int numberOfAttendance) {
+        this.numberOfAttendance = numberOfAttendance;
+    }
+
+    public boolean isFilled() {
+        return isFilled;
+    }
+
+    public void setFilled(boolean filled) {
+        isFilled = filled;
+    }
+
+    public void addReview(Review review){
+        this.reviews.add(review);
+    }
+
+    public double getAverageRating(){
+        double sum = 0;
+        for(Review review : reviews){
+            sum += review.getRating();
+        }
+        if (sum == 0){
+            return 0;
+        } else{
+            return sum/reviews.size();
+        }
+
+    }
+
+    public void updateIsFilled(){
+        if(numberOfBookings == CAPACITY){
+            setFilled(true);
+        } else{
+            setFilled(false);
+        }
+    }
+
+    public void increaseNumberOfBooking(){
+        this.numberOfBookings += 1;
+        updateIsFilled();
+    }
+
+    public void decreaseNumberOfBooking(){
+        this.numberOfBookings -= 1;
+        updateIsFilled();
+    }
+
+    public void increaseNumberOfAttendance(){
+        this.numberOfAttendance += 1;
+    }
+
+    public String toString(){
+        return "Month: " + month + " | Week: " + weekNumber + " | Day: " + day + " | Period: " + period + " | Type: " + type.getFitnessActivity() + " | Price: " + type.getPrice();
     }
 }
