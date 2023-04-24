@@ -1,19 +1,14 @@
 public class Review {
-    private Customer customer;
     private int rating;
 
     private String comments;
 
-    public Review(Customer customer, String lessonTypeOrDay, String comment, int rating) {
+    public Review(String comment, int rating) {
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Review(int rating) {
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public int getRating() {
         return rating;
