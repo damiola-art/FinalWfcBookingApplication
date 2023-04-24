@@ -1,12 +1,17 @@
 public class Review {
     private int rating;
 
-    private String comments;
+    private String comment;
 
     public Review(String comment, int rating) {
+        this.comment = comment;
+        this.rating = rating;
+
     }
 
     public Review(int rating) {
+        this.comment = "";
+        this.rating = rating;
     }
 
 
@@ -18,11 +23,11 @@ public class Review {
         this.rating = rating;
     }
 
-    public String getComments() {
-        return comments;
+    public String getComment() {
+        return comment;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
