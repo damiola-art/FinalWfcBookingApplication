@@ -34,6 +34,7 @@ public class LessonBookingSystem {
         this.bookings.put(bookingID, newBooking);
         customer.addBooking(newBooking);
         customer.addLesson(lesson);
+        lesson.increaseNumberOfBooking();
         lesson.updateIsFilled();
         return bookingID;
     }
